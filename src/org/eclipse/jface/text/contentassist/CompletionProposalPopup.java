@@ -1469,12 +1469,11 @@ class CompletionProposalPopup implements IContentAssistListener {
 			}
 			selectProposal(newSelection, (e.stateMask & SWT.CTRL) != 0);
 			return false;
-		case '.':
-		case ' ':
-		case '=':
-		case ';':
-			hide();
+
 		default:
+			if (key < 'A' || (key > 'Z' && key < 'a') || key > 'z') {
+				hide();
+			}
 			ICompletionProposal proposal = getSelectedProposal();
 			if (proposal instanceof ICompletionProposalExtension) {
 				ICompletionProposalExtension t = (ICompletionProposalExtension) proposal;
